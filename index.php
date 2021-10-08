@@ -14,8 +14,7 @@
 </head>
 
 <body>
-    <?php include('php/function.php');
-    connect() ?>
+    <?php include('php/function.php');  ?>
     <form action="" method="post">
         <label for="type_inter">Type d'intervention</label>
         <input type="text" name="type_inter" size="35" placeholder="Changement d'ampoule..." required>
