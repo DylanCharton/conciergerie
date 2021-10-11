@@ -43,8 +43,37 @@ function displayLines(){
     foreach($interventions as $intervention){
         echo "<tr><td>".$intervention['type_inter']."</td>" ;
         echo "<td>".$intervention['date_inter']."</td>" ;
-        echo "<td>".$intervention['etage_inter']."</td> </tr>";
+        echo "<td>".$intervention['etage_inter']."</td>";
+        echo '<td><form method="GET" action=\'\'><input type="submit" class="btn btn-danger" value="Supprimer" name="suppr"><input type="hidden" name="supprId" value="'.$intervention["id_inter"].'"></td> ';
+        echo '<td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal">
+        Modifier</button></td></form></tr> ';
     }
 }
 
+function deleteLine(){
+    $del = connect()->prepare("DELETE FROM intervention WHERE id_inter = :id");
+    $del->bindParam(':id', $_GET['supprId']);
+    $del-> execute();
+}
+
+if(isset($_GET['supprId'])){
+    deleteLine();
+}
+
+function updateLine(){
+    $update = connect()->prepare('UPDATE interventions SET date_inter = :date_inter, etage_inter=:etage, type_inter=:type_inter WHERE id_int = :id');
+    $update->bindParam(':date_inter', $_GET['date']);
+    $update->bindParam(':etage', $_GET['etage']);
+    $update->bindParam(':type_inter', $_GET['intervention']);
+    $update->bindParam(':id', $_GET['id']);
+    $update->execute();
+ }
+
+ function selectLine(){
+     $select=connect()->prepare("SELECT * FROM intervention WHERE type_inter = :type_inter, date_inter = :date_inter, etage_inter = :etage_inter");
+     $select->bindParam(":type_inter", $_GET['type_inter']);
+     $select->bindParam(":date_inter", $_GET['date_inter']);
+     $select->bindParam(":etage_inter", $_GET['etage_inter']);
+     $select->execute();
+ }
 ?>
