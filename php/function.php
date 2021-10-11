@@ -61,11 +61,11 @@ if(isset($_GET['supprId'])){
 }
 
 function updateLine(){
-    $update = connect()->prepare('UPDATE interventions SET date_inter = :date_inter, etage_inter=:etage, type_inter=:type_inter WHERE id_int = :id');
-    $update->bindParam(':date_inter', $_GET['date']);
-    $update->bindParam(':etage', $_GET['etage']);
-    $update->bindParam(':type_inter', $_GET['intervention']);
-    $update->bindParam(':id', $_GET['id']);
+    $update = connect()->prepare('UPDATE interventions SET date_inter = :date_inter, etage_inter=:etage, type_inter=:type_inter WHERE id_inter = :id');
+    $update->bindParam(':date_inter', $_GET['update_date']);
+    $update->bindParam(':etage', $_GET['update_etage']);
+    $update->bindParam(':type_inter', $_GET['update_type']);
+    $update->bindParam(':id', $_GET['update']);
     $update->execute();
  }
 

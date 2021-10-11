@@ -14,25 +14,8 @@
 </head>
 
 <body>
+  
 <?php include('php/function.php');  ?>
-<!-- Modal update -->
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
     <form action="" method="post">
         <label for="type_inter">Type d'intervention</label>
         <input type="text" name="type_inter" size="35" placeholder="Changement d'ampoule..." required>
@@ -63,6 +46,33 @@
         </tbody>
     </table>
     </div>
+    <!-- Modal update -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier une tâche</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Retour"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="update_type" size="35" placeholder="Changement d'ampoule...">
+        <input type="date" name="update_date">
+        <select name="update_etage">
+            <option value="RDC">RDC</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
+        <button type="button" class="btn btn-warning">Modifier tâche</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
