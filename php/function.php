@@ -73,26 +73,28 @@ function updateLine(){
 
  function selectLine($type, $date, $etage){
      $select = "SELECT * FROM intervention WHERE 1=1";
-     $search = connect()->prepare($select);
+     $param = array();
      if(!empty($type)){
-         $select .= " && type_inter = :search_type";
-         $search->bindParam(":search_type", $type);
+        
+         $select .= " && type_inter = ?";
+         array_push($param, $type);
+       
      }
      if(!empty($date)){
-        $select .= " && date_inter = :search_date";
-        $search->bindParam(":search_date", $date);
+        
+        $select .= " && date_inter = ?";
+        array_push($param, $date);
+    
      }
      if(!empty($etage)){
-        $select .= " && etage_inter = :search_etage";
-        $search->bindParam(":search_etage", $etage);
+        
+        $select .= " && etage_inter = ?";
+        array_push($param, $etage);
      }
-     $search->execute();
+     $search = connect()->prepare($select);
+     $search->execute($param);
      $result = $search->fetchAll(PDO::FETCH_ASSOC);
-     var_dump($date); 
-     var_dump($type);
-     var_dump($etage);
-     var_dump($select);
-     var_dump($result);
+
      return($result);   
  }
 

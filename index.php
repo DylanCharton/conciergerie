@@ -49,7 +49,11 @@
         <tbody>
             <?php
             if (isset($_GET["search_task"])){
-              displayLines(selectLine($_GET['search_type'], $_GET['search_date'], $_GET['search_etage']));
+              if(!empty($_GET['search_type']) || !empty($_GET['search_date']) || !empty($_GET['search_etage'])){
+                displayLines(selectLine($_GET['search_type'], $_GET['search_date'], $_GET['search_etage']));
+              } else {
+                displayLines(allTasks());
+              }
             } else {
               displayLines(allTasks());
             } ?>
