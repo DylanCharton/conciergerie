@@ -38,15 +38,14 @@ if(isset($_POST["submit_task"])){
 }
 
 // I USE MY FUNCTION PREVIOUSLY DEFINED TO MAKE THE REQUEST
-function displayLines(){
-    $interventions = allTasks();
+function displayLines($interventions){
     foreach($interventions as $intervention){
         echo "<tr><td>".$intervention['type_inter']."</td>" ;
         echo "<td>".$intervention['date_inter']."</td>" ;
         echo "<td>".$intervention['etage_inter']."</td>";
         echo '<td><form method="GET" action=\'\'><input type="submit" class="btn btn-danger" value="Supprimer" name="suppr"><input type="hidden" name="supprId" value="'.$intervention["id_inter"].'"></td> ';
-        echo '<td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal">
-        Modifier</button></td></form></tr> ';
+        echo '<td><input type="button" class="btn btn-warning" value="Modifier"></td></form></tr> ';    
+    
     }
 }
 
@@ -58,7 +57,7 @@ function deleteLine(){
 
 if(isset($_GET['supprId'])){
     deleteLine();
-}
+};
 
 function updateLine(){
     $update = connect()->prepare('UPDATE interventions SET date_inter = :date_inter, etage_inter=:etage, type_inter=:type_inter WHERE id_inter = :id');
@@ -68,12 +67,33 @@ function updateLine(){
     $update->bindParam(':id', $_GET['update']);
     $update->execute();
  }
+ if(isset($_GET["update_btn"])){
+     updateLine();
+ };
 
- function selectLine(){
-     $select=connect()->prepare("SELECT * FROM intervention WHERE type_inter = :type_inter, date_inter = :date_inter, etage_inter = :etage_inter");
-     $select->bindParam(":type_inter", $_GET['type_inter']);
-     $select->bindParam(":date_inter", $_GET['date_inter']);
-     $select->bindParam(":etage_inter", $_GET['etage_inter']);
-     $select->execute();
+ function selectLine($type, $date, $etage){
+     $select = "SELECT * FROM intervention WHERE 1=1";
+     $search = connect()->prepare($select);
+     if(!empty($type)){
+         $select .= " && type_inter = :search_type";
+         $search->bindParam(":search_type", $type);
+     }
+     if(!empty($date)){
+        $select .= " && date_inter = :search_date";
+        $search->bindParam(":search_date", $date);
+     }
+     if(!empty($etage)){
+        $select .= " && etage_inter = :search_etage";
+        $search->bindParam(":search_etage", $etage);
+     }
+     $search->execute();
+     $result = $search->fetchAll(PDO::FETCH_ASSOC);
+     var_dump($date); 
+     var_dump($type);
+     var_dump($etage);
+     var_dump($select);
+     var_dump($result);
+     return($result);   
  }
+
 ?>

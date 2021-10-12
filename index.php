@@ -16,18 +16,24 @@
 <body>
   
 <?php include('php/function.php');  ?>
-    <form action="" method="post">
-        <label for="type_inter">Type d'intervention</label>
-        <input type="text" name="type_inter" size="35" placeholder="Changement d'ampoule..." required>
-        <input type="date" name="date_inter" required>
-        <select name="etage_inter" required>
-            <option value="RDC">RDC</option>
+
+    <form action="" method="get">
+        <label for="search_type">Type d'intervention</label>
+        <input type="text" name="search_type" size="35" placeholder="Changement d'ampoule...">
+        <input type="date" name="search_date" >
+        <select name="search_etage" >
+            
+            <option value=""></option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-            <input type="submit" name="submit_task" value="Ajouter">
+            <input type="submit" name="search_task" value="Rechercher">
+            
+        </select>
     </form>
+    <input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal" value="Ajouter">
     <div class="container mt-5">
     <table class=" table table-dark table-striped">
         <thead>
@@ -41,33 +47,45 @@
             </tr>
         </thead>
         <tbody>
-            <?php displayLines() ?>
+            <?php
+            if (isset($_GET["search_task"])){
+              displayLines(selectLine($_GET['search_type'], $_GET['search_date'], $_GET['search_etage']));
+            } else {
+              displayLines(allTasks());
+            } ?>
+  
                
         </tbody>
     </table>
     </div>
-    <!-- Modal update -->
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal add -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modifier une tâche</h5>
+        <h5 class="modal-title" id="addModalLabel">Ajouter une tâche</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Retour"></button>
       </div>
       <div class="modal-body">
-        <input type="text" name="update_type" size="35" placeholder="Changement d'ampoule...">
-        <input type="date" name="update_date">
-        <select name="update_etage">
+      <form action="" method="post">
+        <label for="type_inter">Type d'intervention</label>
+        <input type="text" name="type_inter" size="35" placeholder="Changement d'ampoule..." required>
+        <input type="date" name="date_inter" required >
+        <select name="etage_inter" required >
             <option value="RDC">RDC</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
-        <button type="button" class="btn btn-warning">Modifier tâche</button>
+            
+            
+        </select>
+    
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Retour">
+          <input type="submit" name="submit_task" value="Ajouter" class="btn btn-success">
+      </form>
       </div>
     </div>
   </div>
