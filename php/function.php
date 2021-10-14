@@ -54,12 +54,9 @@ function displayLines($interventions){
             <input type="submit" class="btn btn-danger" value="Supprimer">
             <input type="hidden" name="supprId" value="'.$intervention["id_inter"].'"></form>
         </td> ';
-        echo '<td>
-        <form method="GET" action=\'\'>
-            <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updatemodal'.$intervention["id_inter"].'" value="Modifier" name="">
-              </td>
+        echo "<td><a href='?action=modifier&id=".$intervention['id_inter']."&date=".$intervention['date_inter']."&etage=".$intervention['etage_inter']."&intervention=".$intervention['type_inter']."'>modifier</a>
         </form>
-            </tr> ';  
+            </tr> ";  
     };
 };
 
@@ -67,21 +64,24 @@ function deleteLine(){
     $del = connect()->prepare("DELETE FROM intervention WHERE id_inter = :id");
     $del->bindParam(':id', $_GET['supprId']);
     $del-> execute();
+    
 };
 
+// If supprId is set I execute the deleteLine function
 if(isset($_GET['supprId'])){
     deleteLine();
-};
+}
 
-function updateLine($idInterventions, $type, $date, $etage){
-    $update = connect()->prepare('UPDATE intervention SET type_inter = :type_inter, date_inter = :date_inter, etage_inter=:etage_inter, WHERE id_inter = :id');
-    $update->bindParam(':type_inter', $type );
-    $update->bindParam(':date_inter', $date );
-    $update->bindParam(':etage_inter', $etage );
-    $update->bindParam(':id', $idInterventions );
-    $update->execute();
-    $result = $update->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
+
+
+function updateLine(){
+    $modifier = connect()->prepare('UPDATE intervention SET date_inter = :date, etage_inter=:etage, type_inter=:intervention WHERE id_inter = :id');
+    $modifier->bindParam(':date', $_GET['date']);
+    $modifier->bindParam(':etage', $_GET['etage']);
+    $modifier->bindParam(':intervention', $_GET['intervention']);
+    $modifier->bindParam(':id', $_GET['id']);
+    $modifier->execute();
+    echo "<script>window.location = './index.php';</script>";
     
  };
  

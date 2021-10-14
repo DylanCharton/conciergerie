@@ -37,6 +37,24 @@
  
   
   <div class="container mt-5">
+  <form method="GET">
+ 
+<input type="hidden" name="id" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+echo $_GET['id'];
+} ?>">
+<input type="date" name="date" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+echo $_GET['date'];
+} ?>">
+<input type="number" name="etage" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+echo $_GET['etage'];
+} ?>">
+<input type="text" name="intervention" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+echo $_GET['intervention'];
+} ?>">
+<input type="submit" name='action' value="valider"> <!-- ?action=valider -->
+
+</form>
+
   <input type="button" class="btn btn-success mx-5 my-3" data-bs-toggle="modal" data-bs-target="#addModal" value="Ajouter une tâche">
     <table class=" table table-dark table-striped">
       <thead>
@@ -51,7 +69,9 @@
         </tr>
       </thead>
       <tbody>
+      
         <?php
+        // Condition to call either the search or just display my whole list of intervention
             if (isset($_GET["search_task"])){
               if(!empty($_GET['search_type']) || !empty($_GET['search_date']) || !empty($_GET['search_etage'])){
                 displayLines(selectLine($_GET['search_type'], $_GET['search_date'], $_GET['search_etage']));
@@ -61,7 +81,9 @@
               }
             } else {
               displayLines(allTasks());
-            } ?>
+            } ;
+            ?>
+            
 
   
        
