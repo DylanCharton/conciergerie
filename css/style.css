@@ -1,0 +1,19 @@
+body{
+    background-color: #adadad;
+}
+.bg{
+    background-image: url("../img/bg.png");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    height:100vh;
+    
+}
+
+
+.search-form{
+    padding : 0.5rem;
+    background-color: rgb(39, 38, 46);
+    color: #ffffff;
+}
+
