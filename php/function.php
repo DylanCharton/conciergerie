@@ -2,12 +2,12 @@
 // FUNCTION TO ESTABLISH THE LINK WITH THE DATABASE
 function connect(){
     $servername = 'localhost';
-    // $username = 'dylanc903';
-    // $password = 'kHDQ4b191wu1nQ==';
-    // $dbname = "dylanc903_";
-    $username = 'root';
-    $password = '';
-    $dbname = "conciergerie_ledonienne";
+    $username = 'dylanc903';
+    $password = 'kHDQ4b191wu1nQ==';
+    $dbname = "dylanc903_";
+    // $username = 'root';
+    // $password = '';
+    // $dbname = "conciergerie_ledonienne";
 
     try{
         $pdo = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
@@ -54,7 +54,7 @@ function displayLines($interventions){
             <input type="submit" class="btn btn-danger" value="Supprimer">
             <input type="hidden" name="supprId" value="'.$intervention["id_inter"].'"></form>
         </td> ';
-        echo "<td><a href='?action=modifier&id=".$intervention['id_inter']."&date=".$intervention['date_inter']."&etage=".$intervention['etage_inter']."&intervention=".$intervention['type_inter']."'>modifier</a>
+        echo "<td><a href='?action=modifier&id=".$intervention['id_inter']."&date=".$intervention['date_inter']."&etage=".$intervention['etage_inter']."&intervention=".$intervention['type_inter']."' class='btn btn-warning'>Modifier</a>
         </form>
             </tr> ";  
     };
