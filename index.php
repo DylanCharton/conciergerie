@@ -13,8 +13,9 @@
 
 </head>
 
-<body>
-  <div class="search-fields align-content-center fixed-top">
+<body class="main">
+<?php include('php/function.php');?>
+  <div class="align-content-center fixed-top">
     <form action="" method="get" class="search-form justify-content-center d-flex">
       <h2>Rechercher une intervention </h2>
 
@@ -36,7 +37,11 @@
     </form>
   </div>
   <div class="bg">
-    <?php include('php/function.php');  ?>
+    <div class="d-flex justify-content-between p-4">
+      <div><?php checkConnexion(); ?></div>
+      <div><a href="./php/logout.php" class="btn btn-danger">Déconnexion</a></div>
+    </div>
+      
 
 
 

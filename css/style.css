@@ -1,4 +1,4 @@
-body{
+.main{
     background-color: #adadad;
 }
 .bg{
@@ -8,7 +8,7 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     height:100vh;
-    margin-top: 4rem;
+    margin-top:4rem;
     
 }
 
@@ -64,4 +64,21 @@ table{
     font-size:0.8rem;
     margin-bottom: 0rem;
     opacity:0.8;
+}
+
+/* Sign in page */
+
+.signin-title{
+    background-color: rgb(39, 38, 46);
+    height: 64px;
+    width:100%;
+}
+
+main {
+    background-image: url("../img/bg.png");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height:100vh;
 }

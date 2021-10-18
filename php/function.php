@@ -1,13 +1,15 @@
-<?php
+<?php session_start();
+
+
 // FUNCTION TO ESTABLISH THE LINK WITH THE DATABASE
 function connect(){
     $servername = 'localhost';
-    $username = 'dylanc903';
-    $password = 'kHDQ4b191wu1nQ==';
-    $dbname = "dylanc903_";
-    // $username = 'root';
-    // $password = '';
-    // $dbname = "conciergerie_ledonienne";
+    // $username = 'dylanc903';
+    // $password = 'kHDQ4b191wu1nQ==';
+    // $dbname = "dylanc903_";
+    $username = 'root';
+    $password = '';
+    $dbname = "conciergerie_ledonienne";
 
     try{
         $pdo = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
@@ -16,6 +18,16 @@ function connect(){
         die($e -> getMessage());
     }
 };
+
+function checkConnexion(){
+    connect();
+    if(isset($_SESSION['concierge_connected'])){
+        echo 'Bonjour '.$_SESSION['firstname'].' '.$_SESSION['lastname'].', vous êtes connecté. ';
+    } else {
+        header("Location: ./php/login.php");
+    }
+}
+
 // FUNCTION TO FETCH ALL MY DATABASE ELEMENTS
 function allTasks(){
     $sql = connect()->prepare("SELECT * FROM intervention ORDER BY date_inter");
@@ -26,9 +38,9 @@ function allTasks(){
 };
 // FUNCTION TO INSERT A NEW LINE IN MY TABLE
 function insertTask(){
-    $type_inter = $_POST["type_inter"];
-    $date_inter = $_POST["date_inter"];
-    $etage_inter = $_POST["etage_inter"];
+    $type_inter = strip_tags($_POST["type_inter"]);
+    $date_inter = strip_tags($_POST["date_inter"]);
+    $etage_inter = strip_tags($_POST["etage_inter"]);
     $insertTask = connect()->prepare("INSERT INTO intervention(type_inter, date_inter, etage_inter) VALUES (:type_inter, :date_inter, :etage_inter)");
     $insertTask->bindValue(':type_inter', $type_inter, PDO::PARAM_STR);
     $insertTask->bindValue(':date_inter', $date_inter, PDO::PARAM_STR);
