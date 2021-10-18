@@ -69,12 +69,33 @@ table{
 /* Sign in page */
 
 
-.signin-form{
-    height: 50vh;
-    border: red 1px solid;
-    margin-top: 3rem;
+.signin-form, .login-form{
+    padding-top : 1rem;
+    padding-bottom : 3rem;
+    padding-left : 2.5rem;
+    padding-right : 2.5rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.5); 
+    box-shadow: 0px 0px 10px -1px rgba(88, 88, 88, 0.5);
+    background-color: #fff;
+    
 }
 
-.signin{
+.signin, .login{
     height:100vh;
+}
+.sign-label, .label-login{
+    font-size: 0.8rem;
+    opacity : 0.8;
+
+}
+.sign-title, .login-title{
+    font-size: 2.5rem;
+}
+#signin-bg, #login-bg{
+    background-image: url("../img/bg.png");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

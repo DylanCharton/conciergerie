@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Conciergerie Lédonienne - Connexion</title>
+</head>
+<body id="login-bg">
+    
+
 <?php session_start();
 
 //Première chose à faire se connecter à la base de données
@@ -35,13 +49,19 @@ catch (Exception $error) {
 
 ?>
 <!-- CONNEXION FORM -->
-<form method="post">
-    <input type="text" name="username" placeholder="Entrez votre login" value="">
-    <input type="password" name="password" placeholder="Entrez votre mot de passe" value="">
-    <input type="submit" value="Se connecter">
-</form>
+<section class ="justify-content-center align-items-center d-flex login">
+    <form method="post" class="login-form d-flex flex-column justify-content-center">
+        <h2 class="text-center mb-4 login-title">Connexion</h2>
+        <label for="username" class="label-login">Pseudo :</label>
+        <input type="text" name="username" value="" required>
+        <label for="password" class="mt-3 label-login">Mot de passe :</label>
+        <input type="password" name="password" class="label-login" value="" required>
+        <input type="submit" value="Se connecter" class="btn btn-success mt-4 mb-2">
+        <p class="text-center">Pas de compte ? <a href="./signin.php">Créez-le.</a></p>
+    </form>
+</section>
 
-<p>Pas de compte ? <a href="./signin.php">Créez-le.</a></p>
+
 
 <?php 
 if(isset($_POST['username']) && isset($_POST['password']) && (!empty($_POST['username'])) && (!empty($_POST['password']))){
@@ -77,3 +97,6 @@ if(isset($_POST['username']) && isset($_POST['password']) && (!empty($_POST['use
     }
 }
 ?>
+
+</body>
+</html>

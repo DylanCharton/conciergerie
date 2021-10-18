@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body id="signin-bg">
     <?php session_start();
 
     //Première chose à faire se connecter à la base de données
@@ -49,13 +49,18 @@
 
     ?>
 
-    <section class="justify-content-center align-content-center d-flex signin">
-        <form method="post" class="signin-form">
-            <input type="text" name="username" placeholder="Entrez votre login" value="">
-            <input type="text" name="first-name" placeholder="Entrez votre Prénom" value="">
-            <input type="text" name="last-name" placeholder="Entrez votre Nom" value="">
-            <input type="password" name="password" placeholder="Entrez votre mot de passe" value="">
-            <input type="submit" value="Inscription">
+    <section class="justify-content-center align-items-center d-flex signin">
+        <form method="post" class="signin-form d-flex flex-column justify-content-center">
+            <h2 class="text-center sign-title mb-4">Inscription</h2>
+            <label for="username" class="sign-label">Pseudo :</label>
+            <input type="text" name="username" value="" required>
+            <label for="first-name" class="sign-label mt-3">Prénom :</label>
+            <input type="text" name="first-name" value="" required>
+            <label for="last-name" class="sign-label mt-3">Nom :</label>
+            <input type="text" name="last-name" value="" required>
+            <label for="password" class="sign-label mt-3">Mot de passe :</label>
+            <input type="password" name="password" value="" required>
+            <input type="submit" value="Inscription" class="btn btn-success mt-4">
         </form>
     </section>
 
