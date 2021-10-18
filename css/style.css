@@ -68,17 +68,13 @@ table{
 
 /* Sign in page */
 
-.signin-title{
-    background-color: rgb(39, 38, 46);
-    height: 64px;
-    width:100%;
+
+.signin-form{
+    height: 50vh;
+    border: red 1px solid;
+    margin-top: 3rem;
 }
 
-main {
-    background-image: url("../img/bg.png");
-    background-position: center;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.signin{
     height:100vh;
 }
