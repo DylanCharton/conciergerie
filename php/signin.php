@@ -17,15 +17,15 @@
     //Première chose à faire se connecter à la base de données
 
     // DB Online
-    define('HOST', 'localhost');
-    define('USER', 'dylanc903');
-    define('PASSWD', 'kHDQ4b191wu1nQ==');
-    define('DBNAME', 'dylanc903_');
-    // DB Local
     // define('HOST', 'localhost');
-    // define('USER', 'root');
-    // define('PASSWD', '');
-    // define('DBNAME', 'conciergerie_ledonienne');
+    // define('USER', 'dylanc903');
+    // define('PASSWD', 'kHDQ4b191wu1nQ==');
+    // define('DBNAME', 'dylanc903_');
+    // DB Local
+    define('HOST', 'localhost');
+    define('USER', 'root');
+    define('PASSWD', '');
+    define('DBNAME', 'conciergerie_ledonienne');
 
 
     try {
@@ -48,7 +48,7 @@
 
 
     ?>
-
+<!-- Inscription form -->
     <section class="justify-content-center align-items-center d-flex signin">
         <form method="post" class="signin-form d-flex flex-column justify-content-center">
             <h2 class="text-center sign-title mb-4">Inscription</h2>
@@ -62,21 +62,24 @@
             <input type="password" name="password" value="" required>
             <input type="submit" value="Inscription" class="btn btn-success mt-4">
             <?php
+            // if there is 'username' and 'password' and if they are not empty
     if(isset($_POST['username']) && isset($_POST['password']) && (!empty($_POST['username'])) && (!empty($_POST['password']))){
+        // create my variables and secure them
         $username = strip_tags($_POST['username']);
         $password = strip_tags($_POST['password']);
         $password = password_hash($password, PASSWORD_DEFAULT);
         $firstName = strip_tags($_POST['first-name']);
         $lastName = strip_tags($_POST['last-name']);
-
+        // create my request
         $create_user = 'INSERT INTO utilisateurs(name_user, pass_user, firstname_user, lastname_user) VALUES (:username, :password, :firstname, :lastname)';
         $query = $db->prepare($create_user);
+        // bind the values
         $query->bindValue(':username', $username, PDO::PARAM_STR);
         $query->bindValue(':password', $password, PDO::PARAM_STR);
         $query->bindValue(':firstname', $firstName, PDO::PARAM_STR);
         $query->bindValue(':lastname', $lastName, PDO::PARAM_STR);
         $query->execute();
-
+        // inform the user his account is created
         echo '<div class="alert alert-success mt-3" role="alert">
         Votre compte a bien été créé, vous pouvez désormais vous connecter.
       </div>';

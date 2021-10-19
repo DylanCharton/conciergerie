@@ -17,32 +17,30 @@
 //Première chose à faire se connecter à la base de données
 
 // DB Online
-define('HOST', 'localhost');
-define('USER', 'dylanc903');
-define('PASSWD', 'kHDQ4b191wu1nQ==');
-define('DBNAME', 'dylanc903_');
-// DB Local
 // define('HOST', 'localhost');
-// define('USER', 'root');
-// define('PASSWD', '');
-// define('DBNAME', 'conciergerie_ledonienne');
+// define('USER', 'dylanc903');
+// define('PASSWD', 'kHDQ4b191wu1nQ==');
+// define('DBNAME', 'dylanc903_');
+// DB Local
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASSWD', '');
+define('DBNAME', 'conciergerie_ledonienne');
 
 
 try {
 	$db = new PDO("mysql:host=". HOST .";dbname=". DBNAME, USER, PASSWD, [
-		// Gestion des erreurs PHP/SQL
+		// errors PHP/SQL
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-		// Gestion du jeu de caractères
+		// character set
 		PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-		// Choix du retours des résultats
+		// format of the returned datas
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 	]);
 
-
-	//echo 'Base de données connectée';
 }
 catch (Exception $error) {
-	// Attrape une exception
+	// echo the error
 	echo 'Erreur lors de la connexion à la base de données : '. $error->getMessage();
 }
 
@@ -55,7 +53,11 @@ catch (Exception $error) {
         <label for="username" class="label-login">Pseudo :</label>
         <input type="text" name="username" value="invite" required size="40">
         <label for="password" class="mt-3 label-login">Mot de passe :</label>
-        <input type="password" name="password" class="label-login" value="invite" size="40" required>
+        <input type="password" name="password" class="label-login" id="password" value="invite" size="40" required>
+        <div class="d-flex align-items-center">
+            <input type="checkbox" name="display-password" id="checkbox" class="me-2">
+            Afficher le mot de passe
+        </div>
         <input type="submit" value="Se connecter" class="btn btn-success mt-4 mb-2">
         <p class="text-center">Pas de compte ? <a href="./signin.php">Créez-le.</a></p>
         <?php 
@@ -96,13 +98,14 @@ if(isset($_POST['username']) && isset($_POST['password']) && (!empty($_POST['use
     }
 }
 ?>
+<!-- Alert to inform the user he's not forced to create an account -->
 <p class="alert alert-info">Vous ne voulez pas de compte ? Utilisez notre compte invité en cliquant directement sur "Se connecter"</p>
     </form>
 </section>
 
 
 
-
+<script src="../js/script.js"></script>
 
 </body>
 </html>

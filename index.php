@@ -14,7 +14,9 @@
 </head>
 
 <body class="main">
+  <!-- Calling the file with all my functions -->
   <?php include('php/function.php');?>
+  <!-- The nav is used to search for interventions -->
   <nav class="align-items-center justify-content-around nav-wrapper d-flex">
     <h2 class="text-white">Conciergerie Lédonienne </h2>
     <div class="d-flex">
@@ -45,7 +47,7 @@
   <div class="bg px-5">
 
     <div class="container-fluid pt-4">
-
+      <!-- The function called here allow me to display the name of the user if a session is set. Otherwise it redirects to login.php -->
       <h1 class="text-center"><?php checkConnexion(); ?></h1>
       <h2 class="text-center pb-4">Liste des interventions</h2>
 
@@ -62,7 +64,6 @@
           </tr>
         </thead>
         <tbody>
-
           <?php
         // Condition to call either the search or just display my whole list of intervention
             if (isset($_GET["search_task"])){
@@ -71,17 +72,16 @@
           
               } else {
                 displayLines(allTasks());
-              }
+              } 
             } else {
               displayLines(allTasks());
-            } ;
+              } ;
             ?>
-
-
         </tbody>
       </table>
     </div>
     <div class="container d-flex justify-content-center mt-4">
+      <!-- Form in which the datas will be passed when clicking on a "Modifier" input -->
       <form method="GET" class="d-flex flex-column w-50  update-form">
         <h2 class="text-center text-white modif-title">Modification de l'intervention</h2>
         <input type="text" name="intervention" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
@@ -110,6 +110,7 @@
         <input type="submit" name='action' value="Valider la modification" class="btn btn-success mt-4">
 
       </form>
+      <!-- Triggering the updateLine() function if there is "action" in the URL and if it matches with "Valider la modification" -->
       <?php 
             if(isset($_GET['action']) && $_GET['action']=="Valider la modification" ){
               updateLine();
@@ -117,7 +118,7 @@
             ?>
     </div>
 
-    <!-- Modal add -->
+    <!-- Modal to add an intervention -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

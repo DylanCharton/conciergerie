@@ -4,12 +4,12 @@
 // FUNCTION TO ESTABLISH THE LINK WITH THE DATABASE
 function connect(){
     $servername = 'localhost';
-    $username = 'dylanc903';
-    $password = 'kHDQ4b191wu1nQ==';
-    $dbname = "dylanc903_";
-    // $username = 'root';
-    // $password = '';
-    // $dbname = "conciergerie_ledonienne";
+    // $username = 'dylanc903';
+    // $password = 'kHDQ4b191wu1nQ==';
+    // $dbname = "dylanc903_";
+    $username = 'root';
+    $password = '';
+    $dbname = "conciergerie_ledonienne";
 
     try{
         $pdo = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
@@ -38,6 +38,7 @@ function allTasks(){
 };
 // FUNCTION TO INSERT A NEW LINE IN MY TABLE
 function insertTask(){
+    // Securing my input fields
     $type_inter = strip_tags($_POST["type_inter"]);
     $date_inter = strip_tags($_POST["date_inter"]);
     $etage_inter = strip_tags($_POST["etage_inter"]);
