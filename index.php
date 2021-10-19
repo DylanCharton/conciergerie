@@ -14,44 +14,42 @@
 </head>
 
 <body class="main">
-<?php include('php/function.php');?>
-  <div class="align-content-center fixed-top">
-    <form action="" method="get" class="search-form justify-content-center d-flex">
-      <h2>Rechercher une intervention </h2>
+  <?php include('php/function.php');?>
+  <nav class="align-items-center justify-content-around nav-wrapper d-flex">
+    <h2 class="text-white">Conciergerie Lédonienne </h2>
+    <div class="d-flex">
+      <form action="" method="get" class="search-form justify-content-center d-flex">
+        
 
-      <input type="text" name="search_type" size="35" placeholder="Type d'intervention..." class="mx-3">
+        <input type="text" name="search_type" size="35" placeholder="Type d'intervention..." class="mx-3">
 
-      <input type="date" name="search_date" class="me-3">
+        <input type="date" name="search_date" class="me-3">
 
-      <select name="search_etage" class="me-3">
-        <option value=""></option>
-        <option value="RDC">RDC</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <input type="submit" name="search_task" value="Rechercher" class="btn btn-light">
+        <select name="search_etage" class="me-3">
+          <option value=""></option>
+          <option value="RDC">RDC</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <input type="submit" name="search_task" value="Rechercher" class="btn btn-light">
+        </select>
 
-      </select>
 
-    </form>
-  </div>
-  <div class="bg">
-    <div class="d-flex justify-content-between p-4">
-      <div><?php checkConnexion(); ?></div>
-      <div><a href="./php/logout.php" class="btn btn-danger">Déconnexion</a></div>
+      </form>
     </div>
-      
+    <div class="d-flex">
+      <a href="./php/logout.php" class="btn btn-danger">Déconnexion</a>
+    </div>
+</nav>
+  <div class="bg px-5">
 
-
-
-   
     <div class="container-fluid pt-4">
-     
-    <h1 class="text-center">Conciergerie Lédonienne</h1>
-    <h2 class="text-center pb-4">Liste des interventions</h2>
 
-      <table class=" table table-dark table-striped">
+      <h1 class="text-center"><?php checkConnexion(); ?></h1>
+      <h2 class="text-center pb-4">Liste des interventions</h2>
+
+      <table class="table table-dark table-striped">
         <thead>
           <tr>
             <th scope="col-3">#</th>
@@ -79,46 +77,46 @@
             } ;
             ?>
 
-        
+
         </tbody>
       </table>
     </div>
     <div class="container d-flex justify-content-center mt-4">
-        <form method="GET" class="d-flex flex-column w-50  update-form">
-          <h2 class="text-center text-white modif-title">Modification de l'intervention</h2>
-          <input type="text" name="intervention" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+      <form method="GET" class="d-flex flex-column w-50  update-form">
+        <h2 class="text-center text-white modif-title">Modification de l'intervention</h2>
+        <input type="text" name="intervention" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
           echo $_GET['intervention'];
           } ?>">
-          <input type="hidden" name="id" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+        <input type="hidden" name="id" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
     echo $_GET['id'];
     } ?>">
-          <input class="mt-2"type="date" name="date" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+        <input class="mt-2" type="date" name="date" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
     echo $_GET['date'];
     } ?>">
-          <select class="mt-2" name="etage" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+        <select class="mt-2" name="etage" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
     echo $_GET['etage'];
     } ?>">
-            <option name="etage" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
+          <option name="etage" value="<?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
       echo $_GET['etage'];
     } ?>"><?php if(isset($_GET['action']) && $_GET['action']=="modifier" && !empty( $_GET['id']) ){
       echo $_GET['etage'];
       } ?></option>
-            <option value="RDC">RDC</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-          <input type="submit" name='action' value="Valider la modification" class="btn btn-success mt-4">
-         
-        </form>
-        <?php 
+          <option value="RDC">RDC</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <input type="submit" name='action' value="Valider la modification" class="btn btn-success mt-4">
+
+      </form>
+      <?php 
             if(isset($_GET['action']) && $_GET['action']=="Valider la modification" ){
               updateLine();
             }
             ?>
-      </div>
-   
+    </div>
+
     <!-- Modal add -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -130,7 +128,7 @@
           <div class="modal-body">
             <form action="" method="post">
               <label class="label-add" for="type_inter">Type d'intervention :</label>
-              <input  class="mb-2" type="text" name="type_inter" placeholder="Changement d'ampoule..." required>
+              <input class="mb-2" type="text" name="type_inter" placeholder="Changement d'ampoule..." required>
               <label class="label-add" for="date_inter">Date de l'intervention :</label>
               <input type="date" name="date_inter" size="55" class="mb-2" required>
               <label class="label-add" for="etage_inter">Étage de l'intervention :</label>

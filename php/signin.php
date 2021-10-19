@@ -17,15 +17,15 @@
     //Première chose à faire se connecter à la base de données
 
     // DB Online
-    // define('HOST', 'localhost');
-    // define('USER', 'dylanc903');
-    // define('PASSWD', 'kHDQ4b191wu1nQ==');
-    // define('DBNAME', 'dylanc903_');
-    // DB Local
     define('HOST', 'localhost');
-    define('USER', 'root');
-    define('PASSWD', '');
-    define('DBNAME', 'conciergerie_ledonienne');
+    define('USER', 'dylanc903');
+    define('PASSWD', 'kHDQ4b191wu1nQ==');
+    define('DBNAME', 'dylanc903_');
+    // DB Local
+    // define('HOST', 'localhost');
+    // define('USER', 'root');
+    // define('PASSWD', '');
+    // define('DBNAME', 'conciergerie_ledonienne');
 
 
     try {
@@ -61,10 +61,7 @@
             <label for="password" class="sign-label mt-3">Mot de passe :</label>
             <input type="password" name="password" value="" required>
             <input type="submit" value="Inscription" class="btn btn-success mt-4">
-        </form>
-    </section>
-
-    <?php
+            <?php
     if(isset($_POST['username']) && isset($_POST['password']) && (!empty($_POST['username'])) && (!empty($_POST['password']))){
         $username = strip_tags($_POST['username']);
         $password = strip_tags($_POST['password']);
@@ -80,10 +77,15 @@
         $query->bindValue(':lastname', $lastName, PDO::PARAM_STR);
         $query->execute();
 
-        echo 'Votre compte a bien été créé, vous pouvez désormais vous connecter.';
+        echo '<div class="alert alert-success mt-3" role="alert">
+        Votre compte a bien été créé, vous pouvez désormais vous connecter.
+      </div>';
         header('Refresh:2; url=../index.php');
     }
     ?>
+        </form>
+    </section>
+
 
 </body>
 

@@ -1,3 +1,14 @@
+body{
+    overflow: hidden;
+}
+table{
+    overflow: scroll;
+    max-height: 20rem;
+}
+
+.nav-wrapper{
+    background-color: rgb(39, 38, 46);
+}
 .main{
     background-color: #adadad;
 }
@@ -7,15 +18,13 @@
     background-size:cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height:100vh;
-    margin-top:4rem;
+    height:calc(100vh - 70px);
     
 }
 
 
 .search-form{
     padding : 1rem;
-    background-color: rgb(39, 38, 46);
     color: #ffffff;
     font-size: 0.8rem;
 }
@@ -69,7 +78,19 @@ table{
 /* Sign in page */
 
 
-.signin-form, .login-form{
+.signin-form {
+    padding-top : 1rem;
+    padding-bottom : 3rem;
+    padding-left : 3.5rem;
+    padding-right : 3.5rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.5); 
+    box-shadow: 0px 0px 10px -1px rgba(88, 88, 88, 0.5);
+    background-color: #fff;
+    
+}
+
+.login-form{
     padding-top : 1rem;
     padding-bottom : 3rem;
     padding-left : 2.5rem;
@@ -78,7 +99,6 @@ table{
     -webkit-box-shadow: 0px 0px 5px 1px rgba(88, 88, 88, 0.5); 
     box-shadow: 0px 0px 10px -1px rgba(88, 88, 88, 0.5);
     background-color: #fff;
-    
 }
 
 .signin, .login{
@@ -87,6 +107,7 @@ table{
 .sign-label, .label-login{
     font-size: 0.8rem;
     opacity : 0.8;
+    
 
 }
 .sign-title, .login-title{

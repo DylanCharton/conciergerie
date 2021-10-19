@@ -4,12 +4,12 @@
 // FUNCTION TO ESTABLISH THE LINK WITH THE DATABASE
 function connect(){
     $servername = 'localhost';
-    // $username = 'dylanc903';
-    // $password = 'kHDQ4b191wu1nQ==';
-    // $dbname = "dylanc903_";
-    $username = 'root';
-    $password = '';
-    $dbname = "conciergerie_ledonienne";
+    $username = 'dylanc903';
+    $password = 'kHDQ4b191wu1nQ==';
+    $dbname = "dylanc903_";
+    // $username = 'root';
+    // $password = '';
+    // $dbname = "conciergerie_ledonienne";
 
     try{
         $pdo = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
@@ -22,7 +22,7 @@ function connect(){
 function checkConnexion(){
     connect();
     if(isset($_SESSION['concierge_connected'])){
-        echo 'Bonjour '.$_SESSION['firstname'].' '.$_SESSION['lastname'].', vous êtes connecté. ';
+        echo 'Bonjour '.$_SESSION['firstname'].' '.$_SESSION['lastname'].'';
     } else {
         header("Location: ./php/login.php");
     }
